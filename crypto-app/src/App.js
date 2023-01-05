@@ -1,6 +1,25 @@
 import './App.css';
+import {useState, useEffect} from 'react';
+
+
+const COINS = [
+  'BTCUSDT',
+  'ETHUSDT',
+  'SOLUSDT',
+  'ADAUSDT',
+  'DOGUSDT'
+]
 
 function App() {
+
+  useEffect(() => {
+    fetch('https://binance.us/api/v3/ticker/24hr')
+    .then(res => res.json())
+    .then(data => {
+      console.log({data})
+    })
+  })
+
   return (
         <div className="App">
           <nav>
