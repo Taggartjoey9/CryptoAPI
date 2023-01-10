@@ -12,13 +12,20 @@ const COINS = [
 
 function App() {
 
+  const [coinData, setCoinData] = useState([]);
+
   useEffect(() => {
     fetch('https://binance.us/api/v3/ticker/24hr')
-    .then(res => res.json())
-    .then(data => {
-      console.log({data})
-    })
-  })
+    .then((res) => res.json())
+    .then((data) => {
+      const filteredData = data.filter((ticker) => {
+        if (COINS.includes(ticker.symbol)) {
+          return true;
+        }
+      });
+      setCoinData(filteredData);
+    });
+  }, []);
 
   return (
         <div className="App">
